@@ -1,0 +1,242 @@
+1)
+using System;
+
+class Student
+{
+    public string LastName { get; set; }
+    public DateTime DateOfBirth { get; set; }
+    public string GroupNumber { get; set; }
+    public int[] Grades { get; set; }
+
+    public void UpdatePersonalInfo(string lastName, DateTime dateOfBirth, string groupNumber)
+    {
+        LastName = lastName;
+        DateOfBirth = dateOfBirth;
+        GroupNumber = groupNumber;
+    }
+
+    public void DisplayStudentInfo()
+    {
+        Console.WriteLine($"Student Info: {LastName}, Date of Birth: {DateOfBirth}, Group: {GroupNumber}");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Student student = new Student();
+
+        Console.Write("Enter student's last name: ");
+        string lastName = Console.ReadLine();
+
+        Console.Write("Enter student's date of birth (MM/DD/YYYY): ");
+        DateTime dateOfBirth = DateTime.Parse(Console.ReadLine());
+
+        Console.Write("Enter student's group number: ");
+        string groupNumber = Console.ReadLine();
+
+        student.UpdatePersonalInfo(lastName, dateOfBirth, groupNumber);
+
+        student.DisplayStudentInfo();
+    }
+}
+
+..............................................................
+2)
+using System;
+
+class Train
+{
+    public string Name { get; set; }
+    public string DepatureStantion { get; set; }
+    public string ArrivalStation { get; set; }
+    public string DepartureTime { get; set; }
+
+    public Train(string name, string departureStantion, string arrivalStation, string departureTime)
+    {
+       Name = name;
+       DepatureStantion = departureStantion;
+       ArrivalStation = arrivalStation;
+       DepartureTime = departureTime;    
+    }
+
+    public void PrintInfo()
+    {
+        Console.WriteLine($"Поезд {Name}:");
+        Console.WriteLine($"Отправление: {DepatureStantion}");
+        Console.WriteLine($" Прибытие: {ArrivalStation}");
+        Console.WriteLine($" Время отправления: {DepartureTime}");
+    }
+    
+    class Program
+    {
+        static void Main()
+        {
+            Dictionary<string, Train> trains = new Dictionary<string, Train>
+            {
+                { "1", new Train("Express", "Tomsk", "Ulu-Jul", "17:40") },
+                { "2", new Train("Swift", "Ulu-Jul", "Tomsk", "3:50") }
+            };
+
+            Console.WriteLine("Введите номер поезда для получения информации: ");
+            string trainNumber = Console.ReadLine();
+
+            if ( trains.ContainsKey(trainNumber) ) 
+            {
+                Train selectedTrain = trains[trainNumber];
+                selectedTrain.PrintInfo();
+            }
+            else
+            {
+                Console.WriteLine("Поезд с указанным номером не найден.");
+            }
+        }
+    }
+}
+..........................................................
+3)
+using System;
+
+public class Numbers
+{
+    private int number1;
+    private int number2;
+
+    public Numbers(int number1, int number2)
+    {
+        this.number1 = number1;
+        this.number2 = number2;
+    }
+    public void DisplayNumbers()
+    {
+        Console.WriteLine($"Number 1: {number1}");
+        Console.WriteLine($"Number 2: {number2}");
+    }
+    public void ChangeNumbers(int newNumber1, int newNumber2)
+    {
+        number1 = newNumber1;
+        number2 = newNumber2;
+    }
+    public int GetSum()
+    {
+        return number1 + number2;
+    }
+    public int GetMax()
+    {
+        return Math.Max(number1, number2);
+    }
+}
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Numbers number = new Numbers(5, 10);
+        number.DisplayNumbers();
+       
+        number.ChangeNumbers(15, 20); // Меняем числа
+        number.DisplayNumbers();
+
+        int sum = number.GetSum();
+        Console.WriteLine($"Sum: {sum}");
+
+        int max = number.GetMax();
+        Console.WriteLine($"Max: {max}");
+    }
+}
+.............................................................
+4)
+using System;
+
+class Counter
+{
+    private int count;
+
+    public Counter()
+    {
+        count = 0; 
+    }
+
+    public Counter(int initialValue)
+    {
+        count = initialValue; 
+    }
+
+    public void Increment()
+    {
+        count++;
+    }
+
+    public void Decrement()
+    {
+        count--;
+    }
+
+    public int GetCount()
+    {
+        return count;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Counter counter1 = new Counter(); // счетчик по умолчанию
+        Counter counter2 = new Counter(5); // счетчика с произвольным значением
+
+        Console.WriteLine("Начальное значение счетчика 1: " + counter1.GetCount());
+        Console.WriteLine("Начальное значение счетчика 2 " + counter2.GetCount());
+
+        counter1.Increment();
+        counter1.Increment();
+        counter2.Decrement();
+
+        Console.WriteLine("Значение счетчика 1 после двух приращений: " + counter1.GetCount());
+        Console.WriteLine("Значение счетчика 2 после одного приращения: " + counter2.GetCount());
+    }
+}
+.............................................................
+5)
+using System;
+
+public class Objects
+{
+    private string thing1;
+    private int thing2;
+    public Objects(string t1, int t2)
+    {
+        thing1 = t1;
+        thing2 = t2;
+    }
+
+    public Objects()
+    {
+        thing1 = "default thing1";
+        thing2 = 0;
+    }
+    ~Objects()
+    {
+        Console.WriteLine("Объект удален");
+    }
+
+    public void DisplayThings()
+    {
+        Console.WriteLine("Thing 1:" + thing1);
+        Console.WriteLine("Thing 2:" + thing2);
+    }
+
+}
+
+class Program
+{
+    static void Main()
+    {
+        Objects obj1 = new Objects("Value 1", 10);
+        obj1.DisplayThings();
+
+        Objects obj2 = new Objects();
+        obj2.DisplayThings();
+    }
+}
+................................................................
